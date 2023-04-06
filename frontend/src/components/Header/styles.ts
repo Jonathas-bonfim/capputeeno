@@ -45,6 +45,8 @@ export const HeaderContainer = styled.header`
       height: 42px;
       width: 352px;
 
+      padding-left: 16px;
+
       &::placeholder {
         font-style: normal;
         font-weight: 400;
@@ -52,7 +54,7 @@ export const HeaderContainer = styled.header`
         line-height: 22px;
         color: ${(props) => props.theme["gray-100"]};
 
-        padding-left: 16px;
+        /* padding-left: 16px; */
       }
     }
 
@@ -65,8 +67,7 @@ export const HeaderContainer = styled.header`
 
   .cart {
     position: relative;
-    &::after {
-      content: "2";
+    p {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -77,7 +78,7 @@ export const HeaderContainer = styled.header`
 
       width: 17px;
       height: 17px;
-      background: ${(props) => props.theme.red};
+      background: ${(props) => props.theme.orange};
       border-radius: 50%;
 
       font-style: normal;

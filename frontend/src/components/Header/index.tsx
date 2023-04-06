@@ -21,6 +21,7 @@ export function Header() {
           </article>
           <a href="/" className='cart'>
             <img src={cart} alt="Carrinho de compras" />
+            <p>2</p>
           </a>
         </main>
       </div>
