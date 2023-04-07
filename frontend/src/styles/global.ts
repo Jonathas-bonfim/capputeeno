@@ -8,11 +8,17 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${(props) => props.theme["gray-light"]};
+    background: ${(props) => props.theme["gray-50"]};
     color: ${(props) => props.theme["gray-800"]};
   }
 
-    body, input, textarea, button {
+  button,
+  link,
+  input {
+  cursor: pointer;
+  }
+
+  body, input, textarea, button {
     font-family: 'Saira', sans-serif;
     font-weight: 300;
     font-size: 1rem;
