@@ -1,7 +1,7 @@
 import productImage from '../../assets/images/product/mug.png'
 
 import { NavLink } from "react-router-dom";
-import { ArticleContainer, AsideContainer, ContainerCenter, NavigationContainer, ProductContainer } from "./styles";
+import { ArticleContainer, AsideContainer, ContainerCenter, NavigationContainer, Product, ProductContainer } from "./styles";
 import { useState } from "react";
 
 export function Navigation() {
@@ -31,6 +31,131 @@ export function Navigation() {
           </main>
         </ArticleContainer>
       </ContainerCenter>
+
+      <ProductContainer>
+        <div className="container-center">
+          <Product>
+            <img src={productImage} alt="Imagem do produto" />
+            <article className='product-info'>
+              <p className="product-description" title='Descrição do produto'>
+                Caneca de cerâmica Rústica
+              </p>
+              <div className="divider"></div>
+              <p className="product-value" title='Valor do produto'>R$ 78,00</p>
+            </article>
+          </Product>
+          <Product>
+            <img src={productImage} alt="Imagem do produto" />
+            <article className='product-info'>
+              <p className="product-description" title='Descrição do produto'>
+                Caneca de cerâmica Rústica revevrefvfe gverfervbece
+              </p>
+              <div className="divider"></div>
+              <p className="product-value" title='Valor do produto'>R$ 78,00</p>
+            </article>
+          </Product>
+          <Product>
+            <img src={productImage} alt="Imagem do produto" />
+            <article className='product-info'>
+              <p className="product-description" title='Descrição do produto'>
+                Caneca de cerâmica Rústica revevrefvfe gverfervbece
+              </p>
+              <div className="divider"></div>
+              <p className="product-value" title='Valor do produto'>R$ 78,00</p>
+            </article>
+          </Product>
+          <Product>
+            <img src={productImage} alt="Imagem do produto" />
+            <article className='product-info'>
+              <p className="product-description" title='Descrição do produto'>
+                Caneca de cerâmica Rústica revevrefvfe gverfervbece
+              </p>
+              <div className="divider"></div>
+              <p className="product-value" title='Valor do produto'>R$ 78,00</p>
+            </article>
+          </Product>
+          <Product>
+            <img src={productImage} alt="Imagem do produto" />
+            <article className='product-info'>
+              <p className="product-description" title='Descrição do produto'>
+                Caneca de cerâmica Rústica revevrefvfe gverfervbece
+              </p>
+              <div className="divider"></div>
+              <p className="product-value" title='Valor do produto'>R$ 78,00</p>
+            </article>
+          </Product>
+          <Product>
+            <img src={productImage} alt="Imagem do produto" />
+            <article className='product-info'>
+              <p className="product-description" title='Descrição do produto'>
+                Caneca de cerâmica Rústica revevrefvfe gverfervbece
+              </p>
+              <div className="divider"></div>
+              <p className="product-value" title='Valor do produto'>R$ 78,00</p>
+            </article>
+          </Product>
+          <Product>
+            <img src={productImage} alt="Imagem do produto" />
+            <article className='product-info'>
+              <p className="product-description" title='Descrição do produto'>
+                Caneca de cerâmica Rústica revevrefvfe gverfervbece
+              </p>
+              <div className="divider"></div>
+              <p className="product-value" title='Valor do produto'>R$ 78,00</p>
+            </article>
+          </Product>
+          <Product>
+            <img src={productImage} alt="Imagem do produto" />
+            <article className='product-info'>
+              <p className="product-description" title='Descrição do produto'>
+                Caneca de cerâmica Rústica revevrefvfe gverfervbece
+              </p>
+              <div className="divider"></div>
+              <p className="product-value" title='Valor do produto'>R$ 78,00</p>
+            </article>
+          </Product>
+          <Product>
+            <img src={productImage} alt="Imagem do produto" />
+            <article className='product-info'>
+              <p className="product-description" title='Descrição do produto'>
+                Caneca de cerâmica Rústica revevrefvfe gverfervbece
+              </p>
+              <div className="divider"></div>
+              <p className="product-value" title='Valor do produto'>R$ 78,00</p>
+            </article>
+          </Product>
+          <Product>
+            <img src={productImage} alt="Imagem do produto" />
+            <article className='product-info'>
+              <p className="product-description" title='Descrição do produto'>
+                Caneca de cerâmica Rústica revevrefvfe gverfervbece
+              </p>
+              <div className="divider"></div>
+              <p className="product-value" title='Valor do produto'>R$ 78,00</p>
+            </article>
+          </Product>
+          <Product>
+            <img src={productImage} alt="Imagem do produto" />
+            <article className='product-info'>
+              <p className="product-description" title='Descrição do produto'>
+                Caneca de cerâmica Rústica revevrefvfe gverfervbece
+              </p>
+              <div className="divider"></div>
+              <p className="product-value" title='Valor do produto'>R$ 78,00</p>
+            </article>
+          </Product>
+          <Product>
+            <img src={productImage} alt="Imagem do produto" />
+            <article className='product-info'>
+              <p className="product-description" title='Descrição do produto'>
+                Caneca de cerâmica Rústica revevrefvfe gverfervbece
+              </p>
+              <div className="divider"></div>
+              <p className="product-value" title='Valor do produto'>R$ 78,00</p>
+            </article>
+          </Product>
+        </div>
+      </ProductContainer>
     </NavigationContainer>
   )
 }
