@@ -5,12 +5,12 @@ interface ProductProps {
   id: string;
   image: string;
   name: string;
-  price: number;
+  price: string | undefined;
 }
 
 export function Product({ id, image, name, price }: ProductProps) {
   return (
-    <ProductContainer>
+    <ProductContainer key={id}>
       <NavLink className="link-product" to={`product/${id}`}>
         <img src={image} alt="Imagem do produto" />
         <article className='product-info'>
