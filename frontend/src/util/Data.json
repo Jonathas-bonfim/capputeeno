@@ -1,0 +1,14 @@
+{
+  {
+    "name": "Camiseta DREAMER",
+    "description":
+      "Id eum ut consequatur illum dicta dicta asperiores totam. Id non non dicta asperiores animi dolor aut. Ut iste maxime quae aliquam omnis facilis et illo. Rerum enim animi cupiditate iusto itaque tenetur. Nulla voluptas quis et delectus.",
+    "image_url":
+      "https://storage.googleapis.com/xesque-dev/challenge-images/camiseta-01.jpg",
+    "category": "t-shirts",
+    "id": "435340df-4e82-440d-9fec-bb697ade01e9",
+    "price_in_cents": 2982,
+    "sales": 6,
+    "created_at": "2021-08-07T05:51:11.839Z"
+  }
+}

@@ -1,10 +1,11 @@
-import { MouseEvent } from "react";
+import { MouseEvent, useMemo } from "react";
 
 import { ArticleContainer, AsideContainer, ContainerCenter, NavigationContainer, ProductContainer } from "./styles";
 import { useEffect, useState } from "react";
 import { Product } from '../Product';
 import { api } from '../../services/api';
 import { formatPrice } from "../../util/format";
+import { ProductsMock } from "../../util/Data";
 
 interface ProductProps {
   name: string;
@@ -14,7 +15,7 @@ interface ProductProps {
   id: string;
   price_in_cents: number;
   sales: number;
-  created_at: Date;
+  created_at: string;
   priceFormatted?: string;
   formatDate: number;
 }
@@ -25,16 +26,30 @@ export function Navigation() {
   const [filter, setFilter] = useState('all-products')
   const [dropdownOpen, setDropdownOpen] = useState(true);
 
+  const [search, setSearch] = useState('')
+
   useEffect(() => {
     async function LoadAllProducts() {
-      const response = await api.get<ProductProps[]>(`products`,)
-      const dataAPI = response.data.map(product => ({
-        ...product,
-        priceFormatted: formatPrice(product.price_in_cents / 100),
-        formatDate: Number(new Date(product.created_at))
-      }))
-      setAllProducts(dataAPI)
-      setData(dataAPI)
+      try {
+        const response = await api.get<ProductProps[]>(`productss`)
+
+        const dataAPI = response.data.map(product => ({
+          ...product,
+          priceFormatted: formatPrice(product.price_in_cents / 100),
+          formatDate: Number(new Date(product.created_at))
+        }))
+
+        setAllProducts(dataAPI)
+        setData(dataAPI)
+      } catch (e) {
+        const dataAPI = ProductsMock.map(product => ({
+          ...product,
+          priceFormatted: formatPrice(product.price_in_cents / 100),
+          formatDate: Number(new Date(product.created_at))
+        }))
+        setAllProducts(dataAPI)
+        setData(dataAPI)
+      }
     }
     LoadAllProducts()
   }, [])
@@ -79,6 +94,11 @@ export function Navigation() {
     setDropdownOpen(!dropdownOpen)
   }
 
+  const searchItensInput = useMemo(() => {
+    return data.filter(data => data.description.includes(`${search}`))
+  }, [search])
+  console.log(searchItensInput)
+
   return (
     <NavigationContainer>
       <ContainerCenter>
@@ -103,6 +123,8 @@ export function Navigation() {
           >
             Canecas
           </button>
+
+          <input type="text" onChange={(e) => setSearch(e.target.value)} value={search} />
         </AsideContainer>
         <ArticleContainer>
           <main className={dropdownOpen ? "dropdown" : "dropdown dropdown--active"}>
