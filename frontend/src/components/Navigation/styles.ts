@@ -21,7 +21,7 @@ export const AsideContainer = styled.aside`
   gap: 2.5rem;
   margin-block: 34px;
 
-  a {
+  button {
     font-style: normal;
     font-weight: 600;
     font-size: 1rem;
@@ -29,9 +29,11 @@ export const AsideContainer = styled.aside`
     color: ${(props) => props.theme["gray-800"]};
     text-transform: uppercase;
     text-decoration: none;
+    background-color: transparent;
 
     border-top: 4px solid transparent;
     border-bottom: 4px solid transparent;
+    border-inline: none;
 
     &.active {
       border-bottom: 4px solid ${(props) => props.theme["orange-low"]};

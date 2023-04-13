@@ -1,11 +1,10 @@
 import { MouseEvent } from "react";
 
-import { NavLink } from "react-router-dom";
 import { ArticleContainer, AsideContainer, ContainerCenter, NavigationContainer, ProductContainer } from "./styles";
 import { useEffect, useState } from "react";
 import { Product } from '../Product';
 import { api } from '../../services/api';
-import { FormatDate, formatPrice } from "../../util/format";
+import { formatPrice } from "../../util/format";
 
 interface ProductProps {
   name: string;
@@ -23,9 +22,7 @@ interface ProductProps {
 export function Navigation() {
   const [data, setData] = useState<ProductProps[]>([]);
   const [allProducts, setAllProducts] = useState<ProductProps[]>([]);
-  const [Products, setProducts] = useState<ProductProps[]>([]);
-  const [filter, setFilter] = useState('');
-  const [request, setRequest] = useState(true);
+  const [filter, setFilter] = useState('all-products')
   const [dropdownOpen, setDropdownOpen] = useState(true);
 
   useEffect(() => {
@@ -37,24 +34,9 @@ export function Navigation() {
         formatDate: Number(new Date(product.created_at))
       }))
       setAllProducts(dataAPI)
-      request && setData(dataAPI)
+      setData(dataAPI)
     }
     LoadAllProducts()
-
-    async function LoadProducts() {
-      const response = await api.get<ProductProps[]>(`products`, {
-        params: {
-          category: `${filter}`
-        }
-      })
-      const dataAPI = response.data.map(product => ({
-        ...product,
-        priceFormatted: formatPrice(product.price_in_cents / 100),
-        formatDate: Number(new Date(product.created_at))
-      }))
-      setProducts(dataAPI)
-    }
-    LoadProducts()
   }, [])
 
   function HandleDropdownOpen() {
@@ -63,6 +45,8 @@ export function Navigation() {
 
   function HandleFilterProducts(value: MouseEvent) {
     const valueString = (value.target as HTMLButtonElement).value
+    setFilter(valueString)
+
     if (valueString === 'all-products') {
       setData(allProducts)
     } else {
@@ -73,9 +57,9 @@ export function Navigation() {
     }
   }
 
-  function HandleOrderProducts(value: any) {
-    const currentValue = value.target.value
-    if (currentValue == data) return
+  function HandleOrderProducts(value: MouseEvent) {
+    const currentValue = (value.target as HTMLButtonElement).value as string
+
     if (currentValue == 'majorPrice') {
       const majorPrice = [...data].sort((a, b) => b.price_in_cents - a.price_in_cents);
       setData(majorPrice)
@@ -99,9 +83,26 @@ export function Navigation() {
     <NavigationContainer>
       <ContainerCenter>
         <AsideContainer>
-          <button onClick={(value) => HandleFilterProducts(value)} value="all-products">Todos os produtos</button>
-          <button onClick={(value) => HandleFilterProducts(value)} value="t-shirts">Camisetas</button>
-          <button onClick={(value) => HandleFilterProducts(value)} value="mugs">Canecas</button>
+          <button
+            onClick={(value) => HandleFilterProducts(value)}
+            value="all-products"
+            className={filter === 'all-products' ? 'active' : ``}
+          >
+            Todos os produtos
+          </button>
+          <button
+            onClick={(value) => HandleFilterProducts(value)}
+            value="t-shirts"
+            className={filter === 't-shirts' ? 'active' : ``}
+          >
+            Camisetas
+          </button>
+          <button onClick={(value) => HandleFilterProducts(value)}
+            value="mugs"
+            className={filter === 'mugs' ? 'active' : ``}
+          >
+            Canecas
+          </button>
         </AsideContainer>
         <ArticleContainer>
           <main className={dropdownOpen ? "dropdown" : "dropdown dropdown--active"}>
