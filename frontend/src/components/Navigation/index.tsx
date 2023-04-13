@@ -5,7 +5,7 @@ import { ArticleContainer, AsideContainer, ContainerCenter, NavigationContainer,
 import { useEffect, useState } from "react";
 import { Product } from '../Product';
 import { api } from '../../services/api';
-import { formatPrice } from "../../util/format";
+import { FormatDate, formatPrice } from "../../util/format";
 
 interface ProductProps {
   name: string;
@@ -15,23 +15,31 @@ interface ProductProps {
   id: string;
   price_in_cents: number;
   sales: number;
-  created_at: number;
+  created_at: Date;
   priceFormatted?: string;
+  formatDate: number;
 }
 
 export function Navigation() {
   const [data, setData] = useState<ProductProps[]>([]);
+  const [allProducts, setAllProducts] = useState<ProductProps[]>([]);
+  const [Products, setProducts] = useState<ProductProps[]>([]);
   const [filter, setFilter] = useState('');
+  const [request, setRequest] = useState(true);
   const [dropdownOpen, setDropdownOpen] = useState(true);
 
   useEffect(() => {
-    // api.get<ProductProps[]>(`products`, {
-    //   params: {
-    //     category: `${filter}`
-    //   }
-    // }).then((response) => {
-    //   setData(response.data);
-    // });
+    async function LoadAllProducts() {
+      const response = await api.get<ProductProps[]>(`products`,)
+      const dataAPI = response.data.map(product => ({
+        ...product,
+        priceFormatted: formatPrice(product.price_in_cents / 100),
+        formatDate: Number(new Date(product.created_at))
+      }))
+      setAllProducts(dataAPI)
+      request && setData(dataAPI)
+    }
+    LoadAllProducts()
 
     async function LoadProducts() {
       const response = await api.get<ProductProps[]>(`products`, {
@@ -41,47 +49,49 @@ export function Navigation() {
       })
       const dataAPI = response.data.map(product => ({
         ...product,
-        priceFormatted: formatPrice(product.price_in_cents / 100)
+        priceFormatted: formatPrice(product.price_in_cents / 100),
+        formatDate: Number(new Date(product.created_at))
       }))
-      console.log({ dataAPI })
-      setData(dataAPI)
+      setProducts(dataAPI)
     }
     LoadProducts()
-  }, [filter])
+  }, [])
 
   function HandleDropdownOpen() {
     setDropdownOpen(!dropdownOpen)
   }
 
   function HandleFilterProducts(value: MouseEvent) {
-    setFilter((value.target as HTMLButtonElement).value)
+    const valueString = (value.target as HTMLButtonElement).value
+    if (valueString === 'all-products') {
+      setData(allProducts)
+    } else {
+      const eventFilter = allProducts.filter(product =>
+        product.category.includes(`${valueString}`)
+      )
+      setData(eventFilter)
+    }
   }
 
   function HandleOrderProducts(value: any) {
     const currentValue = value.target.value
     if (currentValue == data) return
-
     if (currentValue == 'majorPrice') {
       const majorPrice = [...data].sort((a, b) => b.price_in_cents - a.price_in_cents);
       setData(majorPrice)
     }
-
     if (currentValue == 'minorPrice') {
       const minorPrice = [...data].sort((a, b) => a.price_in_cents - b.price_in_cents);
       setData(minorPrice)
     }
-
     if (currentValue == 'bestSellers') {
       const bestSellers = [...data].sort((a, b) => b.sales - a.sales);
       setData(bestSellers)
     }
-
     if (currentValue == 'news') {
-      const news = [...data].sort((a, b) => a.created_at - b.created_at);
+      const news = [...data].sort((a, b) => a.formatDate - b.formatDate);
       setData(news)
     }
-
-    console.log({ data })
     setDropdownOpen(!dropdownOpen)
   }
 
@@ -89,7 +99,7 @@ export function Navigation() {
     <NavigationContainer>
       <ContainerCenter>
         <AsideContainer>
-          <button onClick={(value) => HandleFilterProducts(value)}>Todos os produtos</button>
+          <button onClick={(value) => HandleFilterProducts(value)} value="all-products">Todos os produtos</button>
           <button onClick={(value) => HandleFilterProducts(value)} value="t-shirts">Camisetas</button>
           <button onClick={(value) => HandleFilterProducts(value)} value="mugs">Canecas</button>
         </AsideContainer>
@@ -116,4 +126,4 @@ export function Navigation() {
       </ProductContainer>
     </NavigationContainer>
   )
-}
+} 
