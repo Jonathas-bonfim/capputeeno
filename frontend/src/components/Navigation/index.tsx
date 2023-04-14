@@ -20,19 +20,8 @@ interface ProductProps {
 
 export function Navigation() {
   const { dataContext, allProductsContext, updateDataContext } = useContext(AuthContext)
-
-  // const [data, setData] = useState<ProductProps[]>([]);
-  // const [allProducts, setAllProducts] = useState<ProductProps[]>([]);
   const [filter, setFilter] = useState('all-products')
   const [dropdownOpen, setDropdownOpen] = useState(true);
-
-  // useEffect(() => {
-  //   setData(dataContext)
-  //   setAllProducts(allProductsContext)
-  //   console.log({ data, allProducts })
-  // }, []);
-
-  // const [search, setSearch] = useState('')
 
   function HandleDropdownOpen() {
     setDropdownOpen(!dropdownOpen)
