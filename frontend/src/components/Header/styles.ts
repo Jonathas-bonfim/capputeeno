@@ -37,7 +37,9 @@ export const HeaderContainer = styled.header`
     display: flex;
     align-items: center;
 
-    input {
+    position: relative;
+
+    .input-search {
       background-color: ${(props) => props.theme["white-200"]};
       border: none;
       outline: none;
@@ -58,10 +60,24 @@ export const HeaderContainer = styled.header`
       }
     }
 
-    a {
-      margin-left: -35px;
-      height: 24px;
-      width: 24px;
+    .button-submit {
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0px;
+      z-index: 1;
+      border: none;
+      background: transparent;
+
+      &::before {
+        content: url("/src/assets/images/header/search.svg");
+        display: flex;
+      }
+
+      &:hover {
+        filter: brightness(1.2);
+      }
     }
   }
 

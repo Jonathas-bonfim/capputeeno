@@ -13,8 +13,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   button,
-  link,
-  input {
+  link {
   cursor: pointer;
   }
 

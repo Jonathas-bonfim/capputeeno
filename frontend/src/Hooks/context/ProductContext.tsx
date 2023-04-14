@@ -20,6 +20,7 @@ type AuthContextData = {
   dataContext: ProductProps[];
   allProductsContext: ProductProps[];
   updateDataContext(value: ProductProps[]): void;
+  searchProductContext(value: ProductProps[]): void;
 }
 
 type AuthProviderProps = {
@@ -62,9 +63,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setDataContext(value)
   }
 
+  function searchProductContext(value: ProductProps[]) {
+    setDataContext(value)
+  }
+
 
   return (
-    <AuthContext.Provider value={{ dataContext, allProductsContext, updateDataContext }}>
+    <AuthContext.Provider value={{ dataContext, allProductsContext, updateDataContext, searchProductContext }}>
       {children}
     </AuthContext.Provider>
   )

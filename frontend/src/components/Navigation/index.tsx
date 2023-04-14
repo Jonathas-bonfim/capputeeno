@@ -1,22 +1,9 @@
 import { MouseEvent, useContext, useMemo } from "react";
 
 import { ArticleContainer, AsideContainer, ContainerCenter, NavigationContainer, ProductContainer } from "./styles";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Product } from '../Product';
 import { AuthContext } from "../../Hooks/context/ProductContext";
-
-interface ProductProps {
-  name: string;
-  description: string;
-  image_url: string;
-  category: string;
-  id: string;
-  price_in_cents: number;
-  sales: number;
-  created_at: string;
-  priceFormatted?: string;
-  formatDate: number;
-}
 
 export function Navigation() {
   const { dataContext, allProductsContext, updateDataContext } = useContext(AuthContext)
