@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from 'react'
+import { FormEvent, useContext, useState } from 'react'
 import cart from '../../assets/images/header/cart.svg'
-import searchIMG from '../../assets/images/header/search.svg'
 import { HeaderContainer } from './styles'
 import { AuthContext } from '../../Hooks/context/ProductContext'
 
@@ -8,7 +7,7 @@ export function Header() {
   const { allProductsContext, searchProductContext } = useContext(AuthContext)
   const [search, setSearch] = useState('')
 
-  function handleSearchProduct(e: any) {
+  function handleSearchProduct(e: FormEvent) {
     e.preventDefault()
 
     const eventFilter = allProductsContext.filter(product => product.name.includes(`${search}`))
@@ -37,9 +36,6 @@ export function Header() {
                 Submit
               </button>
             </form>
-
-            {/* <img src={searchIMG} alt="Pesquisar" /> */}
-            {/* </input> */}
           </article>
           <a href="/" className='cart'>
             <img src={cart} alt="Carrinho de compras" />

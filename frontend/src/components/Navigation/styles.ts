@@ -7,12 +7,14 @@ export const NavigationContainer = styled.section`
 
 export const ContainerCenter = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   flex-direction: row;
 
   max-width: 1220px;
   width: 100%;
+  max-height: 92rem;
+  height: 100%;
   margin: 0 auto;
 `;
 
@@ -47,6 +49,7 @@ export const AsideContainer = styled.aside`
 `;
 
 export const ArticleContainer = styled.article`
+  margin-block: auto;
   .dropdown {
     position: relative;
   }
@@ -106,6 +109,16 @@ export const ArticleContainer = styled.article`
 `;
 
 export const ProductContainer = styled.section`
+  .pagination {
+    justify-content: flex-end;
+  }
+  .pagination-top {
+    margin-bottom: 2rem;
+  }
+  .pagination-bottom {
+    margin-top: 0.5rem;
+  }
+
   .container-center {
     display: flex;
     -webkit-box-align: center;

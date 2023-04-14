@@ -19,8 +19,10 @@ interface ProductProps {
 type AuthContextData = {
   dataContext: ProductProps[];
   allProductsContext: ProductProps[];
+  recordContext: ProductProps[];
   updateDataContext(value: ProductProps[]): void;
   searchProductContext(value: ProductProps[]): void;
+  recordsPagination(value: ProductProps[]): void;
 }
 
 type AuthProviderProps = {
@@ -32,6 +34,8 @@ export const AuthContext = createContext({} as AuthContextData);
 export function AuthProvider({ children }: AuthProviderProps) {
   const [dataContext, setDataContext] = useState<ProductProps[]>([]);
   const [allProductsContext, setAllProductsContext] = useState<ProductProps[]>([]);
+  const [recordContext, setRecordContext] = useState<ProductProps[]>([]);
+
 
   useEffect(() => {
     async function LoadAllProducts() {
@@ -67,9 +71,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setDataContext(value)
   }
 
+  function recordsPagination(value: ProductProps[]) {
+    setRecordContext(value)
+  }
+
 
   return (
-    <AuthContext.Provider value={{ dataContext, allProductsContext, updateDataContext, searchProductContext }}>
+    <AuthContext.Provider value={{ dataContext, allProductsContext, updateDataContext, searchProductContext, recordContext, recordsPagination }}>
       {children}
     </AuthContext.Provider>
   )

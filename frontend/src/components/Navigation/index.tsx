@@ -1,14 +1,23 @@
-import { MouseEvent, useContext, useMemo } from "react";
+import { MouseEvent, useContext } from "react";
 
 import { ArticleContainer, AsideContainer, ContainerCenter, NavigationContainer, ProductContainer } from "./styles";
 import { useState } from "react";
 import { Product } from '../Product';
 import { AuthContext } from "../../Hooks/context/ProductContext";
+import { Pagination } from "../Pagination";
 
 export function Navigation() {
-  const { dataContext, allProductsContext, updateDataContext } = useContext(AuthContext)
+  const { dataContext, allProductsContext, updateDataContext, recordContext } = useContext(AuthContext)
   const [filter, setFilter] = useState('all-products')
   const [dropdownOpen, setDropdownOpen] = useState(true);
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const recordsPerPage = 12;
+  const lastIndex = currentPage * recordsPerPage;
+  const firstIndex = lastIndex - recordsPerPage;
+  const records = dataContext.slice(firstIndex, lastIndex);
+  const nPage = Math.ceil(dataContext.length / recordsPerPage);
+  const numbers = [...Array(nPage + 1).keys()].slice(1)
 
   function HandleDropdownOpen() {
     setDropdownOpen(!dropdownOpen)
@@ -50,6 +59,24 @@ export function Navigation() {
     setDropdownOpen(!dropdownOpen)
   }
 
+  function prePage() {
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1)
+      console.log({ currentPage })
+    }
+  }
+
+  function changeCPage(id: number) {
+    setCurrentPage(id)
+  }
+
+  function nextPage() {
+    console.log({ currentPage, lastIndex })
+    if (currentPage !== nPage) {
+      setCurrentPage(currentPage + 1)
+    }
+  }
+
   return (
     <NavigationContainer>
       <ContainerCenter>
@@ -89,13 +116,29 @@ export function Navigation() {
         </ArticleContainer>
       </ContainerCenter>
       <ProductContainer>
+        <section className="pagination-top">
+          <Pagination prePage={prePage}
+            nextPage={nextPage}
+            numbers={numbers}
+            currentPage={currentPage}
+            changeCPage={changeCPage}
+          />
+        </section>
         <div className="container-center">
           {
-            dataContext.map(data => (
+            records.map(data => (
               <Product key={data.id} id={data.id} name={data.name} image={data.image_url} price={data.priceFormatted} />
             ))
           }
         </div>
+        <section className="pagination-bottom">
+          <Pagination prePage={prePage}
+            nextPage={nextPage}
+            numbers={numbers}
+            currentPage={currentPage}
+            changeCPage={changeCPage}
+          />
+        </section>
       </ProductContainer>
     </NavigationContainer>
   )
