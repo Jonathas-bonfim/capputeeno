@@ -1,11 +1,9 @@
-import { MouseEvent, useMemo } from "react";
+import { MouseEvent, useContext, useMemo } from "react";
 
 import { ArticleContainer, AsideContainer, ContainerCenter, NavigationContainer, ProductContainer } from "./styles";
 import { useEffect, useState } from "react";
 import { Product } from '../Product';
-import { api } from '../../services/api';
-import { formatPrice } from "../../util/format";
-import { ProductsMock } from "../../util/Data";
+import { AuthContext } from "../../Hooks/context/ProductContext";
 
 interface ProductProps {
   name: string;
@@ -21,38 +19,20 @@ interface ProductProps {
 }
 
 export function Navigation() {
-  const [data, setData] = useState<ProductProps[]>([]);
-  const [allProducts, setAllProducts] = useState<ProductProps[]>([]);
+  const { dataContext, allProductsContext, updateDataContext } = useContext(AuthContext)
+
+  // const [data, setData] = useState<ProductProps[]>([]);
+  // const [allProducts, setAllProducts] = useState<ProductProps[]>([]);
   const [filter, setFilter] = useState('all-products')
   const [dropdownOpen, setDropdownOpen] = useState(true);
 
-  const [search, setSearch] = useState('')
+  // useEffect(() => {
+  //   setData(dataContext)
+  //   setAllProducts(allProductsContext)
+  //   console.log({ data, allProducts })
+  // }, []);
 
-  useEffect(() => {
-    async function LoadAllProducts() {
-      try {
-        const response = await api.get<ProductProps[]>(`productss`)
-
-        const dataAPI = response.data.map(product => ({
-          ...product,
-          priceFormatted: formatPrice(product.price_in_cents / 100),
-          formatDate: Number(new Date(product.created_at))
-        }))
-
-        setAllProducts(dataAPI)
-        setData(dataAPI)
-      } catch (e) {
-        const dataAPI = ProductsMock.map(product => ({
-          ...product,
-          priceFormatted: formatPrice(product.price_in_cents / 100),
-          formatDate: Number(new Date(product.created_at))
-        }))
-        setAllProducts(dataAPI)
-        setData(dataAPI)
-      }
-    }
-    LoadAllProducts()
-  }, [])
+  // const [search, setSearch] = useState('')
 
   function HandleDropdownOpen() {
     setDropdownOpen(!dropdownOpen)
@@ -63,12 +43,12 @@ export function Navigation() {
     setFilter(valueString)
 
     if (valueString === 'all-products') {
-      setData(allProducts)
+      updateDataContext(allProductsContext)
     } else {
-      const eventFilter = allProducts.filter(product =>
+      const eventFilter = allProductsContext.filter(product =>
         product.category.includes(`${valueString}`)
       )
-      setData(eventFilter)
+      updateDataContext(eventFilter)
     }
   }
 
@@ -76,28 +56,23 @@ export function Navigation() {
     const currentValue = (value.target as HTMLButtonElement).value as string
 
     if (currentValue == 'majorPrice') {
-      const majorPrice = [...data].sort((a, b) => b.price_in_cents - a.price_in_cents);
-      setData(majorPrice)
+      const majorPrice = [...dataContext].sort((a, b) => b.price_in_cents - a.price_in_cents);
+      updateDataContext(majorPrice)
     }
     if (currentValue == 'minorPrice') {
-      const minorPrice = [...data].sort((a, b) => a.price_in_cents - b.price_in_cents);
-      setData(minorPrice)
+      const minorPrice = [...dataContext].sort((a, b) => a.price_in_cents - b.price_in_cents);
+      updateDataContext(minorPrice)
     }
     if (currentValue == 'bestSellers') {
-      const bestSellers = [...data].sort((a, b) => b.sales - a.sales);
-      setData(bestSellers)
+      const bestSellers = [...dataContext].sort((a, b) => b.sales - a.sales);
+      updateDataContext(bestSellers)
     }
     if (currentValue == 'news') {
-      const news = [...data].sort((a, b) => a.formatDate - b.formatDate);
-      setData(news)
+      const news = [...dataContext].sort((a, b) => a.formatDate - b.formatDate);
+      updateDataContext(news)
     }
     setDropdownOpen(!dropdownOpen)
   }
-
-  const searchItensInput = useMemo(() => {
-    return data.filter(data => data.description.includes(`${search}`))
-  }, [search])
-  console.log(searchItensInput)
 
   return (
     <NavigationContainer>
@@ -124,7 +99,6 @@ export function Navigation() {
             Canecas
           </button>
 
-          <input type="text" onChange={(e) => setSearch(e.target.value)} value={search} />
         </AsideContainer>
         <ArticleContainer>
           <main className={dropdownOpen ? "dropdown" : "dropdown dropdown--active"}>
@@ -141,7 +115,7 @@ export function Navigation() {
       <ProductContainer>
         <div className="container-center">
           {
-            data.map(data => (
+            dataContext.map(data => (
               <Product key={data.id} id={data.id} name={data.name} image={data.image_url} price={data.priceFormatted} />
             ))
           }
