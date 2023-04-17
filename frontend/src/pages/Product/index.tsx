@@ -1,28 +1,20 @@
 import { useContext } from 'react'
 import { ProductContainer, ContainerCenter, ProductText } from "./styles";
-import mugIMG from '../../assets/images/product/mug.png'
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Hooks/context/ProductContext";
 
-interface ProductProps {
-  category: string;
-  title: string;
-  price: number;
-  description: string;
-}
-
-// export function Product({ category, title, price, description }: ProductProps) {
 export function Product() {
   const { allProductsContext } = useContext(AuthContext)
   const { productId } = useParams()
   const ProductFilter = allProductsContext.filter(product => product.id.includes(`${productId}`))
-  console.log({ productId, ProductFilter })
+
+  const navigate = useNavigate()
 
   return (
     <ProductContainer>
       <ContainerCenter>
         <aside>
-          <button>Voltar</button>
+          <button onClick={() => navigate(-1)}>Voltar</button>
         </aside>
         <main>
           {
