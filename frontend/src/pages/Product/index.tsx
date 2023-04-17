@@ -1,5 +1,8 @@
+import { useContext } from 'react'
 import { ProductContainer, ContainerCenter, ProductText } from "./styles";
 import mugIMG from '../../assets/images/product/mug.png'
+import { useParams } from "react-router-dom";
+import { AuthContext } from "../../Hooks/context/ProductContext";
 
 interface ProductProps {
   category: string;
@@ -10,6 +13,11 @@ interface ProductProps {
 
 // export function Product({ category, title, price, description }: ProductProps) {
 export function Product() {
+  const { allProductsContext } = useContext(AuthContext)
+  const { productId } = useParams()
+  const ProductFilter = allProductsContext.filter(product => product.id.includes(`${productId}`))
+  console.log({ productId, ProductFilter })
+
   return (
     <ProductContainer>
       <ContainerCenter>
@@ -17,24 +25,32 @@ export function Product() {
           <button>Voltar</button>
         </aside>
         <main>
-          <img
-            className="imageProduct"
-            src={mugIMG}
-            alt="Imagem do produto"
-          />
-          <ProductText>
-            <article>
-              <p className="category">Caneca</p>
-              <h3 className="title">Caneca de cerâmica rústica</h3>
-              <h4 className="price">R$ 40,00</h4>
-              <p className="note">*Frete de R$40,00 para todo o Brasil. Grátis para compras acima de R$900,00</p>
-              <h4 className="title-description">Descrição</h4>
-              <p className="description">Aqui vem um texto descritivo do produto, esta caixa de texto servirá apenas de exemplo para que simule algum texto que venha a ser inserido nesse campo, descrevendo tal produto.</p>
-            </article>
-            <button>
-              ADICIONAR AO CARRINHO
-            </button>
-          </ProductText>
+          {
+            ProductFilter.map(product => (
+              <>
+                <img
+                  className="imageProduct"
+                  src={product.image_url}
+                  alt="Imagem do produto"
+                />
+                <ProductText>
+
+                  <article>
+                    <p className="category">{product.category === 't-shirts' ? 'Camisa' : 'Caneca'}</p>
+                    <h3 className="title">{product.name}</h3>
+                    <h4 className="price">{product.priceFormatted}</h4>
+                    <p className="note">*Frete de R$40,00 para todo o Brasil. Grátis para compras acima de R$900,00</p>
+                    <h4 className="title-description">Descrição</h4>
+                    <p className="description">{product.description}</p>
+                  </article>
+
+                  <button>
+                    ADICIONAR AO CARRINHO
+                  </button>
+                </ProductText>
+              </>
+            ))
+          }
         </main>
       </ContainerCenter>
     </ProductContainer>

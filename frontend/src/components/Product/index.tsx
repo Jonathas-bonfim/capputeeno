@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { ProductContainer } from "./styles";
+import { useState } from "react";
 
 interface ProductProps {
   id: string;
