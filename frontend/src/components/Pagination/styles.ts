@@ -18,10 +18,10 @@ export const PaginationContainer = styled.ul`
 
     transition: all 0.2s;
     &.active {
-      border: 1px solid #ffa585;
+      border: 1px solid ${(props) => props.theme["orange-low"]};
 
       a {
-        color: #ffa585;
+        color: ${(props) => props.theme["orange-low"]};
       }
     }
   }
@@ -32,5 +32,6 @@ export const PaginationContainer = styled.ul`
     font-weight: 400;
     font-size: 1rem;
     line-height: 150%;
+    color: ${(props) => props.theme["gray-400"]};
   }
 `;

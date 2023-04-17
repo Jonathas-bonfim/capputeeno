@@ -2,7 +2,7 @@ import { MouseEvent, useContext } from "react";
 
 import { ArticleContainer, AsideContainer, ContainerCenter, NavigationContainer, ProductContainer } from "./styles";
 import { useState } from "react";
-import { Product } from '../Product';
+import { ProductItem } from '../Product';
 import { AuthContext } from "../../Hooks/context/ProductContext";
 import { Pagination } from "../Pagination";
 
@@ -127,7 +127,7 @@ export function Navigation() {
         <div className="container-center">
           {
             records.map(data => (
-              <Product key={data.id} id={data.id} name={data.name} image={data.image_url} price={data.priceFormatted} />
+              <ProductItem key={data.id} id={data.id} name={data.name} image={data.image_url} price={data.priceFormatted} />
             ))
           }
         </div>

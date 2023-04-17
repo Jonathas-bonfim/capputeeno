@@ -8,7 +8,7 @@ interface ProductProps {
   price: string | undefined;
 }
 
-export function Product({ id, image, name, price }: ProductProps) {
+export function ProductItem({ id, image, name, price }: ProductProps) {
   return (
     <ProductContainer key={id}>
       <NavLink className="link-product" to={`product/${id}`}>

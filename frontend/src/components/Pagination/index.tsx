@@ -1,4 +1,6 @@
 import { PaginationContainer } from './styles'
+import arrowLeft from '../../assets/images/pagination/arrow-left.svg'
+import arrowRight from '../../assets/images/pagination/arrow-right.svg'
 
 interface PaginationProps {
   prePage(): void;
@@ -19,10 +21,14 @@ export function Pagination({ prePage, nextPage, numbers, currentPage, changeCPag
         ))
       }
       <li className="page-item">
-        <a href="#" onClick={prePage} className="page-link">P</a>
+        <a href="#" onClick={prePage} className="page-link">
+          <img src={arrowLeft} alt="Anterior" />
+        </a>
       </li>
       <li className="page-item">
-        <a href="#" className="page-link" onClick={nextPage}>N</a>
+        <a href="#" className="page-link" onClick={nextPage}>
+          <img src={arrowRight} alt="Próxima" />
+        </a>
       </li>
     </PaginationContainer>
   )

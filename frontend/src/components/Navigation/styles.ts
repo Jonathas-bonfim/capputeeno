@@ -130,5 +130,6 @@ export const ProductContainer = styled.section`
     margin: 0px auto;
     flex-wrap: wrap;
     gap: 32px;
+    aspect-ratio: 16/9;
   }
 `;
