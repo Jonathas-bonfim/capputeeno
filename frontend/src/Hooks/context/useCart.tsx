@@ -69,6 +69,7 @@ export function CartProvider({ children }: CartProviderProps) {
         updatedCart.splice(productIndex, 1);
         setCart(updatedCart);
         localStorage.setItem('@capputeeno:cart', JSON.stringify(updatedCart));
+        alert('Produto Removido com sucesso!');
       } else {
         throw Error();
       }

@@ -1,12 +1,14 @@
 import { FormEvent, useContext, useState } from 'react'
-import cart from '../../assets/images/header/cart.svg'
+import cartIMG from '../../assets/images/header/cart.svg'
 import { HeaderContainer } from './styles'
 import { ProductContext } from '../../Hooks/context/useProductContext'
 
 import { useNavigate } from "react-router-dom";
+import { CartContext } from '../../Hooks/context/useCart';
 
 export function Header() {
   const { allProductsContext, searchProductContext } = useContext(ProductContext)
+  const { cart } = useContext(CartContext)
   const [search, setSearch] = useState('')
   const navigate = useNavigate();
 
@@ -43,8 +45,8 @@ export function Header() {
             </form>
           </article>
           <a href="/cart" className='cart'>
-            <img src={cart} alt="Carrinho de compras" />
-            <p>2</p>
+            <img src={cartIMG} alt="Carrinho de compras" />
+            <p>{cart.length}</p>
           </a>
         </main>
       </div>

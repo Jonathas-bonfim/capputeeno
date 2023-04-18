@@ -144,6 +144,14 @@ export const ProductLeft = styled.main`
           font-size: 0.75rem;
           line-height: 150%;
           margin-bottom: 1.56rem;
+
+          max-height: 3rem;
+          overflow: auto;
+
+          &::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+          }
         }
 
         aside {
