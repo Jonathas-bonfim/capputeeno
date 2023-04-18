@@ -37,7 +37,7 @@ export function Header() {
               </button>
             </form>
           </article>
-          <a href="/" className='cart'>
+          <a href="/cart" className='cart'>
             <img src={cart} alt="Carrinho de compras" />
             <p>2</p>
           </a>

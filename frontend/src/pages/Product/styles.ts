@@ -20,7 +20,6 @@ export const ContainerCenter = styled.div`
     margin-top: 1.5625rem;
     margin-bottom: 1.375rem;
 
-    a,
     button {
       display: flex;
 
