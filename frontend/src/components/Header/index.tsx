@@ -3,15 +3,20 @@ import cart from '../../assets/images/header/cart.svg'
 import { HeaderContainer } from './styles'
 import { AuthContext } from '../../Hooks/context/ProductContext'
 
+import { useNavigate } from "react-router-dom";
+
 export function Header() {
   const { allProductsContext, searchProductContext } = useContext(AuthContext)
   const [search, setSearch] = useState('')
+  const navigate = useNavigate();
 
   function handleSearchProduct(e: FormEvent) {
     e.preventDefault()
 
-    const eventFilter = allProductsContext.filter(product => product.name.includes(`${search}`))
+    const searchLowerCase = search.toLowerCase()
+    const eventFilter = allProductsContext.filter(product => product.name.toLocaleLowerCase().includes(`${searchLowerCase}`))
     searchProductContext(eventFilter)
+    navigate(`/`)
     setSearch('')
   }
   return (

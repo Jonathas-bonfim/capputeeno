@@ -7,7 +7,7 @@ import { AuthContext } from "../../Hooks/context/ProductContext";
 import { Pagination } from "../Pagination";
 
 export function Navigation() {
-  const { dataContext, allProductsContext, updateDataContext, recordContext } = useContext(AuthContext)
+  const { dataContext, allProductsContext, updateDataContext } = useContext(AuthContext)
   const [filter, setFilter] = useState('all-products')
   const [dropdownOpen, setDropdownOpen] = useState(true);
 
@@ -18,6 +18,7 @@ export function Navigation() {
   const records = dataContext.slice(firstIndex, lastIndex);
   const nPage = Math.ceil(dataContext.length / recordsPerPage);
   const numbers = [...Array(nPage + 1).keys()].slice(1)
+
 
   function HandleDropdownOpen() {
     setDropdownOpen(!dropdownOpen)
@@ -36,7 +37,6 @@ export function Navigation() {
       updateDataContext(eventFilter)
     }
     setCurrentPage(1)
-
   }
 
   function HandleOrderProducts(value: MouseEvent) {
