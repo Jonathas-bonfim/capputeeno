@@ -1,13 +1,21 @@
 import { useContext } from 'react'
 import { ProductContainer, ContainerCenter, ProductText } from "./styles";
-import { useParams } from "react-router-dom";
-import { AuthContext } from "../../Hooks/context/ProductContext";
+import { useNavigate, useParams } from "react-router-dom";
+import { ProductContext } from "../../Hooks/context/useProductContext";
 import { ButtonBackNavigation } from '../../components/ButtonBackNavigation';
+import { CartContext } from '../../Hooks/context/useCart';
 
 export function Product() {
-  const { allProductsContext } = useContext(AuthContext)
+  const { allProductsContext } = useContext(ProductContext)
+  const { addProduct } = useContext(CartContext)
   const { productId } = useParams()
+  const navigate = useNavigate()
   const ProductFilter = allProductsContext.filter(product => product.id.includes(`${productId}`))
+
+  function handleAddToCart(productId: string) {
+    addProduct(productId);
+    navigate("/cart")
+  }
 
   return (
     <ProductContainer>
@@ -33,7 +41,7 @@ export function Product() {
                   <p className="description">{product.description}</p>
                 </article>
 
-                <button>
+                <button onClick={() => handleAddToCart(product.id)}>
                   ADICIONAR AO CARRINHO
                 </button>
               </ProductText>

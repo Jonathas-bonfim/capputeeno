@@ -1,12 +1,12 @@
 import { FormEvent, useContext, useState } from 'react'
 import cart from '../../assets/images/header/cart.svg'
 import { HeaderContainer } from './styles'
-import { AuthContext } from '../../Hooks/context/ProductContext'
+import { ProductContext } from '../../Hooks/context/useProductContext'
 
 import { useNavigate } from "react-router-dom";
 
 export function Header() {
-  const { allProductsContext, searchProductContext } = useContext(AuthContext)
+  const { allProductsContext, searchProductContext } = useContext(ProductContext)
   const [search, setSearch] = useState('')
   const navigate = useNavigate();
 

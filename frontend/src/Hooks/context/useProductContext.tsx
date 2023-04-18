@@ -3,7 +3,7 @@ import { api } from "../../services/api";
 import { formatPrice } from "../../util/format";
 import { ProductsMock } from "../../util/Data";
 
-interface ProductProps {
+export interface ProductProps {
   name: string;
   description: string;
   image_url: string;
@@ -14,9 +14,10 @@ interface ProductProps {
   created_at: string;
   priceFormatted?: string;
   formatDate: number;
+  quantity?: number | null;
 }
 
-type AuthContextData = {
+type ProductContextData = {
   dataContext: ProductProps[];
   allProductsContext: ProductProps[];
   recordContext: ProductProps[];
@@ -25,13 +26,13 @@ type AuthContextData = {
   recordsPagination(value: ProductProps[]): void;
 }
 
-type AuthProviderProps = {
+type ProductProviderProps = {
   children: ReactNode;
 }
 
-export const AuthContext = createContext({} as AuthContextData);
+export const ProductContext = createContext({} as ProductContextData);
 
-export function AuthProvider({ children }: AuthProviderProps) {
+export function ProductProvider({ children }: ProductProviderProps) {
   const [dataContext, setDataContext] = useState<ProductProps[]>([]);
   const [allProductsContext, setAllProductsContext] = useState<ProductProps[]>([]);
   const [recordContext, setRecordContext] = useState<ProductProps[]>([]);
@@ -77,8 +78,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
 
   return (
-    <AuthContext.Provider value={{ dataContext, allProductsContext, updateDataContext, searchProductContext, recordContext, recordsPagination }}>
+    <ProductContext.Provider value={{ dataContext, allProductsContext, updateDataContext, searchProductContext, recordContext, recordsPagination }}>
       {children}
-    </AuthContext.Provider>
+    </ProductContext.Provider>
   )
 }

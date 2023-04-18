@@ -3,11 +3,11 @@ import { MouseEvent, useContext } from "react";
 import { ArticleContainer, AsideContainer, ContainerCenter, NavigationContainer, ProductContainer } from "./styles";
 import { useState } from "react";
 import { ProductItem } from '../Product';
-import { AuthContext } from "../../Hooks/context/ProductContext";
+import { ProductContext } from "../../Hooks/context/useProductContext";
 import { Pagination } from "../Pagination";
 
 export function Navigation() {
-  const { dataContext, allProductsContext, updateDataContext } = useContext(AuthContext)
+  const { dataContext, allProductsContext, updateDataContext } = useContext(ProductContext)
   const [filter, setFilter] = useState('all-products')
   const [dropdownOpen, setDropdownOpen] = useState(true);
 

@@ -4,17 +4,20 @@ import { defaultTheme } from './styles/themes/default'
 
 import { BrowserRouter } from 'react-router-dom'
 import { Router } from './Router'
-import { AuthProvider } from './Hooks/context/ProductContext'
+import { ProductProvider } from './Hooks/context/useProductContext'
+import { CartProvider } from './Hooks/context/useCart'
 
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <AuthProvider>
-        <BrowserRouter>
-          <Router />
-        </BrowserRouter>
+      <ProductProvider>
+        <CartProvider>
+          <BrowserRouter>
+            <Router />
+          </BrowserRouter>
+        </CartProvider>
         <GlobalStyle />
-      </AuthProvider>
+      </ProductProvider>
     </ThemeProvider>
   )
 }
