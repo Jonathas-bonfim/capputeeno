@@ -35,10 +35,13 @@ export function Navigation() {
       )
       updateDataContext(eventFilter)
     }
+    setCurrentPage(1)
+
   }
 
   function HandleOrderProducts(value: MouseEvent) {
     const currentValue = (value.target as HTMLButtonElement).value as string
+    setCurrentPage(1)
 
     if (currentValue == 'majorPrice') {
       const majorPrice = [...dataContext].sort((a, b) => b.price_in_cents - a.price_in_cents);
@@ -62,7 +65,6 @@ export function Navigation() {
   function prePage() {
     if (currentPage !== 1) {
       setCurrentPage(currentPage - 1)
-      console.log({ currentPage })
     }
   }
 
