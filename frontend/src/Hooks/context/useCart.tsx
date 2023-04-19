@@ -94,8 +94,9 @@ export function CartProvider({ children }: CartProviderProps) {
         throw Error();
       }
 
-    } catch {
+    } catch (e) {
       alert('Erro na alteração de quantidade do produto');
+      console.log({ e });
     }
   };
 

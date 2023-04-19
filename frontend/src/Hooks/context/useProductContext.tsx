@@ -14,7 +14,7 @@ export interface ProductProps {
   created_at: string;
   priceFormatted?: string;
   formatDate: number;
-  quantity?: number | null;
+  quantity: number;
 }
 
 type ProductContextData = {
@@ -46,7 +46,8 @@ export function ProductProvider({ children }: ProductProviderProps) {
         const dataAPI = response.data.map(product => ({
           ...product,
           priceFormatted: formatPrice(product.price_in_cents / 100),
-          formatDate: Number(new Date(product.created_at))
+          formatDate: Number(new Date(product.created_at)),
+          quantity: 1
         }))
 
         setAllProductsContext(dataAPI)
@@ -55,7 +56,8 @@ export function ProductProvider({ children }: ProductProviderProps) {
         const dataAPI = ProductsMock.map(product => ({
           ...product,
           priceFormatted: formatPrice(product.price_in_cents / 100),
-          formatDate: Number(new Date(product.created_at))
+          formatDate: Number(new Date(product.created_at)),
+          quantity: 1
         }))
         setAllProductsContext(dataAPI)
         setDataContext(dataAPI)

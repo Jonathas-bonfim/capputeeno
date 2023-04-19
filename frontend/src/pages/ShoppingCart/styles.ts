@@ -159,6 +159,87 @@ export const ProductLeft = styled.main`
           align-items: center;
           justify-content: space-between;
 
+          .dropdownQuantity {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+            .dropdownQuantity-toggle {
+              display: flex;
+              align-items: center;
+              justify-content: space-evenly;
+
+              width: 4.06rem;
+              height: 2.5rem;
+
+              border-radius: 8px;
+              border: 1px solid ${(props) => props.theme["gray-400"]};
+              background: ${(props) => props.theme["white-200"]};
+              color: ${(props) => props.theme["gray-400"]};
+
+              font-style: normal;
+              font-weight: 400;
+              font-size: 1rem;
+              line-height: 150%;
+
+              &::after {
+                content: url("/src/assets/images/orderby/arrow.svg");
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 8px;
+                height: 4px;
+              }
+
+              transition: all 0.2s;
+              &--active {
+                ::after {
+                  rotate: 180deg;
+                }
+              }
+            }
+
+            .dropdownQuantity-content {
+              opacity: 0;
+              max-height: 0px;
+              pointer-events: none;
+              visibility: hidden;
+
+              position: absolute;
+              top: 2.7rem;
+
+              display: flex;
+              align-items: center;
+              justify-content: space-evenly;
+              flex-direction: column;
+
+              width: 4.06rem;
+              height: 9.06rem;
+              background: ${(props) => props.theme["white"]};
+              box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+              border: none;
+
+              &--active {
+                opacity: 1;
+                max-height: none;
+                pointer-events: all;
+                visibility: visible;
+              }
+            }
+
+            .button-quantity {
+              font-style: normal;
+              font-weight: 400;
+              font-size: 1rem;
+              line-height: 150%;
+              color: ${(props) => props.theme["gray-400"]};
+
+              border: none;
+              background: transparent;
+            }
+          }
+
           b {
             font-style: normal;
             font-weight: 600;
