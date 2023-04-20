@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { MouseEvent, useContext, useState } from "react"
 import { ButtonBackNavigation } from "../../components/ButtonBackNavigation"
 import { MainContainer, ProductLeft, ProductRight, ShoppingCartContainer } from "./styles"
 import { CartContext } from "../../Hooks/context/useCart"
@@ -26,7 +26,7 @@ export function ShoppingCart() {
       setDropdownQuantity(productId)
     }
   }
-  function HandleSelectQuantityProduct(productId: string, value: any) {
+  function HandleSelectQuantityProduct(productId: string, value: MouseEvent) {
     const currentValue = Number((value.target as HTMLButtonElement).value)
     updateProductQuantity(productId, currentValue)
     setDropdownQuantity('')

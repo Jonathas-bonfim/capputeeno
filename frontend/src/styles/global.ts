@@ -52,4 +52,10 @@ export const GlobalStyle = createGlobalStyle`
     background: #e5e5e5;
     border-radius: 5px;
   }
+
+  @media screen and (max-width: $breackpoint768) {
+  html {
+    font-size: 14px;
+  }
+}
 `;

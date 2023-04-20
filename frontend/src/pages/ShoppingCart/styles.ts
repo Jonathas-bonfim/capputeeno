@@ -22,15 +22,27 @@ export const ShoppingCartContainer = styled.section`
     width: 100%;
     max-height: 100%;
   }
+
+  @media screen and (max-width: 1300px) {
+    padding-inline: 20px;
+  }
+  @media screen and (max-width: 1300px) {
+    max-height: 100%;
+  }
 `;
 
 export const MainContainer = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 1rem;
   width: 100%;
   height: 100%;
   max-height: 100%;
+
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+  }
 `;
 
 export const ProductLeft = styled.main`
@@ -251,6 +263,51 @@ export const ProductLeft = styled.main`
       }
     }
   }
+  @media screen and (max-width: 1024px) {
+    .container-item {
+      ul {
+        height: 100%;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+      }
+      li {
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  @media screen and (max-width: 670px) {
+    .container-item li {
+      div {
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: fill;
+        }
+      }
+      section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        .description {
+          display: none;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .container-item ul {
+      li {
+        display: flex;
+        flex-direction: column;
+        max-height: none;
+        section {
+          padding: 1rem;
+        }
+      }
+    }
+  }
 `;
 
 export const ProductRight = styled.aside`
@@ -362,6 +419,15 @@ export const ProductRight = styled.aside`
       line-height: 150%;
       text-transform: uppercase;
       color: ${(props) => props.theme["gray-400"]};
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    height: 100%;
+    max-width: 100%;
+
+    header {
+      margin-bottom: 5rem;
     }
   }
 `;

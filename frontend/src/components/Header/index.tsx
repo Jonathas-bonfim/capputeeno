@@ -25,7 +25,12 @@ export function Header() {
     <HeaderContainer>
       <div className="container-center">
         <aside>
-          <a href="/">capputeeno</a>
+          <a href="/" className='logo'>capputeeno</a>
+
+          <a href="/cart" className='cart cart-mobile'>
+            <img src={cartIMG} alt="Carrinho de compras" />
+            <p>{cart.length}</p>
+          </a>
         </aside>
         <main>
           <article>
@@ -44,7 +49,7 @@ export function Header() {
               </button>
             </form>
           </article>
-          <a href="/cart" className='cart'>
+          <a href="/cart" className='cart cart-desktop'>
             <img src={cartIMG} alt="Carrinho de compras" />
             <p>{cart.length}</p>
           </a>

@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 export const ProductContainer = styled.aside`
-  width: 281px;
-  height: 378px;
+  width: 17.56rem;
+  height: 23.62rem;
   overflow: hidden;
 
   margin-bottom: 1.5rem;
-
   .link-product {
     display: flex;
     align-items: flex-start;
@@ -18,7 +17,7 @@ export const ProductContainer = styled.aside`
 
   img {
     width: 100%;
-    height: 300px;
+    height: auto;
 
     object-fit: cover;
   }
@@ -67,5 +66,19 @@ export const ProductContainer = styled.aside`
     color: ${(props) => props.theme.dark};
 
     margin-bottom: 8px;
+  }
+
+  @media screen and (max-width: 960px) {
+    width: 13.5rem;
+    height: auto;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  }
+
+  @media screen and (max-width: 490px) {
+    width: 9.45rem;
+  }
+
+  @media screen and (max-width: 360px) {
+    width: 100%;
   }
 `;

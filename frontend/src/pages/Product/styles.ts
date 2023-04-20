@@ -2,6 +2,12 @@ import styled from "styled-components";
 
 export const ProductContainer = styled.section`
   display: flex;
+
+  @media screen and (max-width: 1300px) {
+    padding-inline: 20px;
+    width: 100%;
+    overflow-y: hidden;
+  }
 `;
 
 export const ContainerCenter = styled.div`
@@ -54,6 +60,18 @@ export const ContainerCenter = styled.div`
       width: 700px;
       height: 580px;
       object-fit: fill;
+    }
+
+    @media screen and (max-width: 1024px) {
+      align-items: center;
+      flex-direction: column;
+
+      .imageProduct {
+        max-width: 400px;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
     }
   }
 `;
@@ -141,6 +159,13 @@ export const ProductText = styled.div`
     transition: all 0.2s;
     &:hover {
       filter: contrast(1.3);
+    }
+  }
+
+  @media screen and (max-width: 490px) {
+    article,
+    button {
+      margin-bottom: 2rem;
     }
   }
 `;
