@@ -11,6 +11,7 @@ interface CartContextData {
   addProduct: (productId: string) => void;
   removeProduct: (productId: string) => void;
   updateProductQuantity: (productId: string, quantity: number) => void;
+  FinalizeBuy(): void;
 }
 
 export const CartContext = createContext({} as CartContextData);
@@ -93,15 +94,19 @@ export function CartProvider({ children }: CartProviderProps) {
       } else {
         throw Error();
       }
-
     } catch (e) {
       alert('Erro na alteração de quantidade do produto');
       console.log({ e });
     }
   };
 
+  function FinalizeBuy() {
+    setCart([]);
+    localStorage.removeItem('@capputeeno:cart');
+  }
+
   return (
-    <CartContext.Provider value={{ cart, addProduct, removeProduct, updateProductQuantity }}>
+    <CartContext.Provider value={{ cart, addProduct, removeProduct, updateProductQuantity, FinalizeBuy }}>
       {children}
     </CartContext.Provider>
   )

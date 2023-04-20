@@ -403,6 +403,11 @@ export const ProductRight = styled.aside`
       &:hover {
         filter: brightness(1.1);
       }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: no-drop;
+      }
     }
   }
 
@@ -428,6 +433,57 @@ export const ProductRight = styled.aside`
 
     header {
       margin-bottom: 5rem;
+    }
+  }
+`;
+
+export const CheckoutContainer = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  background: white;
+
+  h1 {
+    font-family: "Saira Stencil One";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.5rem;
+    line-height: 150%;
+  }
+
+  p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 150%;
+  }
+
+  .dots-3 {
+    width: 60px;
+    aspect-ratio: 2;
+    --_g: no-repeat radial-gradient(circle closest-side, #000 90%, #0000);
+    background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
+    background-size: calc(100% / 3) 50%;
+    animation: d3 1s infinite linear;
+  }
+  @keyframes d3 {
+    20% {
+      background-position: 0% 0%, 50% 50%, 100% 50%;
+    }
+    40% {
+      background-position: 0% 100%, 50% 0%, 100% 50%;
+    }
+    60% {
+      background-position: 0% 50%, 50% 100%, 100% 0%;
+    }
+    80% {
+      background-position: 0% 50%, 50% 50%, 100% 100%;
     }
   }
 `;
