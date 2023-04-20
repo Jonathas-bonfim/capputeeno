@@ -3,6 +3,7 @@ import { ArticleContainer, AsideContainer, ContainerCenter, HomeContainer, Navig
 import { ProductContext } from "../../Hooks/context/useProductContext";
 import { Pagination } from "../../components/Pagination";
 import { ProductItem } from "../../components/Product";
+import arrowDropdown from '../../assets/images/orderby/arrow.svg'
 
 export function Home() {
   const { dataContext, allProductsContext, updateDataContext } = useContext(ProductContext)
@@ -71,7 +72,6 @@ export function Home() {
   }
 
   function nextPage() {
-    console.log({ currentPage, lastIndex })
     if (currentPage !== nPage) {
       setCurrentPage(currentPage + 1)
     }
@@ -106,7 +106,13 @@ export function Home() {
             </AsideContainer>
             <ArticleContainer>
               <main className={dropdownOpen ? "dropdown" : "dropdown dropdown--active"}>
-                <button className={dropdownOpen ? "dropdown-toggle" : "dropdown-toggle dropdown-toggle--active"} onClick={HandleDropdownOpen}>Organizar por</button>
+                <button
+                  className={dropdownOpen ? "dropdown-toggle" : "dropdown-toggle dropdown-toggle--active"}
+                  onClick={HandleDropdownOpen}
+                >
+                  Organizar por
+                  <img src={arrowDropdown} alt="Arrow" />
+                </button>
                 <div className={dropdownOpen ? "dropdown-content" : "dropdown-content dropdown-content--active"}>
                   <button onClick={(value) => HandleOrderProducts(value)} value="news" className="button-orderby">Novidades</button>
                   <button onClick={(value) => HandleOrderProducts(value)} value="majorPrice" className="button-orderby">Preço: Maior - menor</button>

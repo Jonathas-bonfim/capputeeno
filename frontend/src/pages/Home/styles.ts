@@ -83,6 +83,11 @@ export const ArticleContainer = styled.article`
   }
 
   button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
     border: none;
     background: transparent;
 
@@ -92,15 +97,6 @@ export const ArticleContainer = styled.article`
     line-height: 22px;
   }
 
-  .dropdown-toggle {
-    &::after {
-      content: url("src/assets/images/orderby/arrow.svg");
-      margin-left: 1rem;
-
-      background-color: transparent;
-    }
-  }
-
   .dropdown-content {
     opacity: 0;
     max-height: 0;
@@ -108,6 +104,7 @@ export const ArticleContainer = styled.article`
     visibility: hidden;
 
     position: absolute;
+    z-index: 1;
     right: 0;
     top: 2rem;
 

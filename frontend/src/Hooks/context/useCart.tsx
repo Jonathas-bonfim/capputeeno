@@ -33,7 +33,7 @@ export function CartProvider({ children }: CartProviderProps) {
       const productExist = updatedCart.find(product => product.id === productId);
 
       if (productExist) {
-        alert(`O produto ${productExist.description} já foi adicionado ao carrinho!`);
+        alert(`O produto ${productExist.name} já foi adicionado ao carrinho!`);
       } else {
         const product = allProductsContext.find(product => product.id === productId);
         if (product) {
@@ -51,7 +51,6 @@ export function CartProvider({ children }: CartProviderProps) {
           }
           updatedCart.push(newProduct);
         }
-
       }
       setCart(updatedCart);
       localStorage.setItem('@capputeeno:cart', JSON.stringify(updatedCart));
@@ -96,7 +95,6 @@ export function CartProvider({ children }: CartProviderProps) {
       }
     } catch (e) {
       alert('Erro na alteração de quantidade do produto');
-      console.log({ e });
     }
   };
 

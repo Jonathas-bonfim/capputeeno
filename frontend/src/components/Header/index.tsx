@@ -3,7 +3,7 @@ import cartIMG from '../../assets/images/header/cart.svg'
 import { HeaderContainer } from './styles'
 import { ProductContext } from '../../Hooks/context/useProductContext'
 
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { CartContext } from '../../Hooks/context/useCart';
 
 export function Header() {
@@ -49,10 +49,10 @@ export function Header() {
               </button>
             </form>
           </article>
-          <a href="/cart" className='cart cart-desktop'>
+          <NavLink to="/cart" className='cart cart-desktop'>
             <img src={cartIMG} alt="Carrinho de compras" />
             <p>{cart.length}</p>
-          </a>
+          </NavLink>
         </main>
       </div>
     </HeaderContainer>

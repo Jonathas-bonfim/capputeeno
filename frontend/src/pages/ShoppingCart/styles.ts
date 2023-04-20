@@ -136,8 +136,7 @@ export const ProductLeft = styled.main`
             background: transparent;
             border: none;
 
-            &::before {
-              content: url("/src/assets/images/shoppingCart/remove.svg");
+            img {
               display: flex;
               width: 24px;
               height: 24px;
@@ -195,13 +194,12 @@ export const ProductLeft = styled.main`
               font-size: 1rem;
               line-height: 150%;
 
-              &::after {
-                content: url("/src/assets/images/orderby/arrow.svg");
+              img {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 8px;
-                height: 4px;
+                width: 10px;
+                height: 10px;
               }
 
               transition: all 0.2s;

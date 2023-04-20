@@ -6,6 +6,8 @@ export const PaginationContainer = styled.ul`
   list-style-type: none;
 
   li {
+    position: relative;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,6 +29,15 @@ export const PaginationContainer = styled.ul`
   }
 
   a {
+    position: absolute;
+    height: 110%;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -40%);
+
+    text-align: center;
+
     text-decoration: none;
     font-style: normal;
     font-weight: 400;

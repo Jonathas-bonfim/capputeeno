@@ -5,6 +5,9 @@ import { CartContext } from "../../Hooks/context/useCart"
 import { formatPrice } from "../../util/format"
 import { useNavigate } from "react-router-dom"
 
+import ArrowDropdown from '../../assets/images/orderby/arrow.svg'
+import remove from '../../assets/images/shoppingCart/remove.svg'
+
 export function ShoppingCart() {
   const { cart, removeProduct, updateProductQuantity, FinalizeBuy } = useContext(CartContext)
   const [dropdownQuantity, setDropdownQuantity] = useState('')
@@ -21,7 +24,6 @@ export function ShoppingCart() {
   const TotalOrder = formatPrice(PriceProducts + 40)
 
   function handleDropdownQuantityOpen(productId: string) {
-    console.log(dropdownQuantity.length)
     if (dropdownQuantity.length >= 1) {
       setDropdownQuantity('')
     }
@@ -85,12 +87,23 @@ export function ShoppingCart() {
                                   <section>
                                     <header>
                                       <h4>{product.name}</h4>
-                                      <button onClick={() => handleRemoveProductToCart(product.id)}>Remover</button>
+                                      <button
+                                        onClick={() => handleRemoveProductToCart(product.id)}
+                                      >
+                                        Remover
+                                        <img src={remove} alt="Remover" />
+                                      </button>
                                     </header>
                                     <p className="description">{product.description}</p>
                                     <aside>
                                       <main className={dropdownQuantity === product.id ? "dropdownQuantity dropdownQuantity--active" : "dropdownQuantity"}>
-                                        <button className={dropdownQuantity === product.id ? "dropdownQuantity-toggle dropdownQuantity-toggle--active" : "dropdownQuantity-toggle"} onClick={() => handleDropdownQuantityOpen(product.id)}>{product.quantity}</button>
+                                        <button
+                                          className={dropdownQuantity === product.id ? "dropdownQuantity-toggle dropdownQuantity-toggle--active" : "dropdownQuantity-toggle"}
+                                          onClick={() => handleDropdownQuantityOpen(product.id)}
+                                        >
+                                          {product.quantity}
+                                          <img src={ArrowDropdown} alt="ArrowDropdown" />
+                                        </button>
                                         <div className={dropdownQuantity === product.id ? "dropdownQuantity-content dropdownQuantity-content--active" : "dropdownQuantity-content"}>
                                           <button onClick={(value) => HandleSelectQuantityProduct(product.id, value)} value="1" className="button-quantity">1</button>
                                           <button onClick={(value) => HandleSelectQuantityProduct(product.id, value)} value="2" className="button-quantity">2</button>
