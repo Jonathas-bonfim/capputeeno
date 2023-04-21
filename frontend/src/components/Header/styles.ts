@@ -68,11 +68,6 @@ export const HeaderContainer = styled.header`
       border: none;
       background: transparent;
 
-      &::before {
-        content: url("/src/assets/images/header/search.svg");
-        display: flex;
-      }
-
       &:hover {
         filter: brightness(1.2);
       }

@@ -5,6 +5,8 @@ import { ProductContext } from "../../Hooks/context/useProductContext";
 import { ButtonBackNavigation } from '../../components/ButtonBackNavigation';
 import { CartContext } from '../../Hooks/context/useCart';
 
+import bagIMG from '../../assets/images/product/shopping-bag.svg'
+
 export function Product() {
   const { allProductsContext } = useContext(ProductContext)
   const { addProduct } = useContext(CartContext)
@@ -41,7 +43,10 @@ export function Product() {
                   <p className="description">{product.description}</p>
                 </article>
 
-                <button onClick={() => handleAddToCart(product.id)}>
+                <button
+                  onClick={() => handleAddToCart(product.id)}
+                >
+                  <img src={bagIMG} alt="Adicionar ao carrinho" />
                   ADICIONAR AO CARRINHO
                 </button>
               </ProductText>

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const ButtonNavigation = styled.button`
   display: flex;
+  gap: 11px;
 
   font-style: normal;
   font-weight: 500;
@@ -12,12 +13,6 @@ export const ButtonNavigation = styled.button`
   background: transparent;
   color: ${(props) => props.theme["gray-200"]};
 
-  &::before {
-    content: url("/src/assets/images/product/back.svg");
-    width: 18px;
-    height: 18px;
-    margin-right: 11px;
-  }
   transition: all 0.2s;
   &:hover {
     filter: brightness(1.2);

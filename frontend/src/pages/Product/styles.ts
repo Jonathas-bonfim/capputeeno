@@ -38,12 +38,6 @@ export const ContainerCenter = styled.div`
       background: transparent;
       color: ${(props) => props.theme["gray-200"]};
 
-      &::before {
-        content: url("/src/assets/images/product/back.svg");
-        width: 18px;
-        height: 18px;
-        margin-right: 11px;
-      }
       transition: all 0.2s;
       &:hover {
         filter: brightness(1.2);
@@ -149,7 +143,7 @@ export const ProductText = styled.div`
     color: ${(props) => props.theme.white};
     background: ${(props) => props.theme.blue};
 
-    &::before {
+    img {
       content: url("/src/assets/images/product/shopping-bag.svg");
       display: flex;
       height: 24px;

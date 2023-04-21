@@ -1,5 +1,7 @@
-import { FormEvent, useContext, useState } from 'react'
 import cartIMG from '../../assets/images/header/cart.svg'
+import searchIMG from '../../assets/images/header/search.svg'
+
+import { FormEvent, useContext, useState } from 'react'
 import { HeaderContainer } from './styles'
 import { ProductContext } from '../../Hooks/context/useProductContext'
 
@@ -44,8 +46,10 @@ export function Header() {
               />
               <button
                 className='button-submit'
-                onClick={(e) => handleSearchProduct(e)}>
+                onClick={(e) => handleSearchProduct(e)}
+              >
                 Submit
+                <img src={searchIMG} alt="Pesquisar" />
               </button>
             </form>
           </article>
