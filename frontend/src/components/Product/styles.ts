@@ -45,10 +45,6 @@ export const ProductContainer = styled.aside`
     white-space: nowrap;
 
     margin-top: 8px;
-
-    &::after {
-      content: "";
-    }
   }
 
   .divider {
@@ -72,6 +68,11 @@ export const ProductContainer = styled.aside`
     width: 13.5rem;
     height: auto;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+    p,
+    .divider {
+      max-width: 90%;
+    }
   }
 
   @media screen and (max-width: 490px) {

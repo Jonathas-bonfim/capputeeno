@@ -247,6 +247,7 @@ export const ProductLeft = styled.main`
 
               border: none;
               background: transparent;
+              width: 100%;
             }
           }
 
@@ -280,7 +281,7 @@ export const ProductLeft = styled.main`
         img {
           width: 100%;
           height: 100%;
-          object-fit: fill;
+          object-fit: cover;
         }
       }
       section {
@@ -453,6 +454,7 @@ export const CheckoutContainer = styled.section`
     font-weight: 400;
     font-size: 2.5rem;
     line-height: 150%;
+    text-align: center;
   }
 
   p {
@@ -460,6 +462,7 @@ export const CheckoutContainer = styled.section`
     font-weight: 400;
     font-size: 1.5rem;
     line-height: 150%;
+    text-align: center;
   }
 
   .dots-3 {
