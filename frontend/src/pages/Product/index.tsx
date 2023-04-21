@@ -5,7 +5,7 @@ import { ProductContext } from "../../Hooks/context/useProductContext";
 import { ButtonBackNavigation } from '../../components/ButtonBackNavigation';
 import { CartContext } from '../../Hooks/context/useCart';
 
-import shoppingBagIMG from '../../assets/images/product/shopping-bag.svg'
+import mallIMG from '../../assets/images/product/mall.svg'
 
 export function Product() {
   const { allProductsContext } = useContext(ProductContext)
@@ -46,7 +46,7 @@ export function Product() {
                 <button
                   onClick={() => handleAddToCart(product.id)}
                 >
-                  <img src={shoppingBagIMG} alt="Adicionar ao carrinho" />
+                  <img src={mallIMG} alt="Adicionar ao carrinho" />
                   ADICIONAR AO CARRINHO
                 </button>
               </ProductText>
