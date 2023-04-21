@@ -144,7 +144,6 @@ export const ProductText = styled.div`
     background: ${(props) => props.theme.blue};
 
     img {
-      content: url("/src/assets/images/product/shopping-bag.svg");
       display: flex;
       height: 24px;
       width: 24px;

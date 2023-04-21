@@ -1,3 +1,5 @@
+import mallIMG from '../../assets/images/product/mall.svg'
+
 import { useContext } from 'react'
 import { ProductContainer, ContainerCenter, ProductText } from "./styles";
 import { useNavigate, useParams } from "react-router-dom";
@@ -5,7 +7,6 @@ import { ProductContext } from "../../Hooks/context/useProductContext";
 import { ButtonBackNavigation } from '../../components/ButtonBackNavigation';
 import { CartContext } from '../../Hooks/context/useCart';
 
-import mallIMG from '../../assets/images/product/mall.svg'
 
 export function Product() {
   const { allProductsContext } = useContext(ProductContext)
