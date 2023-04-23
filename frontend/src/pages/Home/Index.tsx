@@ -18,6 +18,8 @@ export function Home() {
   const nPage = Math.ceil(dataContext.length / recordsPerPage);
   const numbers = [...Array(nPage + 1).keys()].slice(1)
 
+  console.log({ lastIndex, firstIndex })
+
 
   function HandleDropdownOpen() {
     setDropdownOpen(!dropdownOpen)

@@ -3,7 +3,7 @@ import { ButtonBackNavigation } from "../../components/ButtonBackNavigation"
 import { CheckoutContainer, MainContainer, ProductLeft, ProductRight, ShoppingCartContainer } from "./styles"
 import { CartContext } from "../../Hooks/context/useCart"
 import { formatPrice } from "../../util/format"
-import { useNavigate } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 
 import ArrowDropdown from '../../assets/images/orderby/arrow.svg'
 import remove from '../../assets/images/shoppingCart/remove.svg'
@@ -67,7 +67,11 @@ export function ShoppingCart() {
                   {
                     cart.length == 0
                       ?
-                      <h1>Nenhum produto foi adicionado ao carrinho</h1>
+                      <div className="cart-empty">
+                        <h1>Seu carrinho está vazio</h1>
+                        <p>PARA CONTINUAR COMPRANDO, NAVEGUE PELOS PRODUTOS DO SITE OU FAÇA UMA BUSCA PELO SEU PRODUTO.</p>
+                        <NavLink to='/'>Adicionar produtos</NavLink>
+                      </div>
                       :
                       <div className="text">
                         <header className="header-text">

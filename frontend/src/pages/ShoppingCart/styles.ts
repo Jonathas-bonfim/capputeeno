@@ -47,7 +47,55 @@ export const MainContainer = styled.div`
 
 export const ProductLeft = styled.main`
   display: flex;
+  width: 100%;
   max-height: 100%;
+
+  .cart-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0 auto;
+
+    margin-top: 3rem;
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      height: 2.75rem;
+      width: 100%;
+      border: none;
+      border-radius: 4px;
+      background-color: ${(props) => props.theme.blue};
+      color: rgb(255, 255, 255);
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 150%;
+      text-transform: uppercase;
+      text-decoration: none;
+
+      transition: all 0.2s;
+      &:hover {
+        filter: contrast(1.3);
+      }
+    }
+
+    P {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 30rem;
+      text-align: center;
+    }
+  }
 
   .text {
     max-height: 100%;
