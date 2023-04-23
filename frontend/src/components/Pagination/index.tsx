@@ -12,7 +12,7 @@ interface PaginationProps {
 
 export function Pagination({ prePage, nextPage, numbers, currentPage, changeCPage }: PaginationProps) {
   return (
-    <PaginationContainer className="pagination">
+    <PaginationContainer data-testid="pagination-element" className="pagination">
       {
         numbers.map((n, i) => (
           <li className={`page-item ${currentPage === n ? 'active' : ''}`} key={i}>

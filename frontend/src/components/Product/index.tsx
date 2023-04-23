@@ -14,7 +14,7 @@ export function ProductItem({ id, image, name, price }: ProductProps) {
     <ProductContainer key={id}>
       <NavLink className="link-product" to={`product/${id}`}>
         <img src={image} alt="Imagem do produto" />
-        <article className='product-info'>
+        <article data-testid="container-info" className='product-info'>
           <p className="product-name" title='Nome do produto'>{name}</p>
           <div className="divider"></div>
           <p className="product-value" title='Valor do produto'>{price}</p>
