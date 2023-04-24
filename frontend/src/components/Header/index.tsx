@@ -27,12 +27,12 @@ export function Header() {
     <HeaderContainer>
       <div className="container-center">
         <aside>
-          <a href="/" className='logo'>capputeeno</a>
+          <NavLink to="/" className='logo'>capputeeno</NavLink>
 
-          <a href="/cart" className='cart cart-mobile'>
+          <NavLink to="/cart" className='cart cart-mobile'>
             <img src={cartIMG} alt="Carrinho de compras" />
             <p>{cart.length}</p>
-          </a>
+          </NavLink>
         </aside>
         <main>
           <article>
